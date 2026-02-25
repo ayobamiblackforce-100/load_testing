@@ -26,14 +26,13 @@
 
 
 
-
 name: load testing
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  build:
+  machine-1:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
