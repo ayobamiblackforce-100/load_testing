@@ -13,8 +13,6 @@ jobs:
 
     - name: Use Node.js and npm
       uses: actions/setup-node@v6.2.0
-    #   # with:
-    #   #   node-version: ${{ matrix.node-version }}
 
     # - name: setup
     #   run: |
@@ -22,8 +20,9 @@ jobs:
 
     - name: check vars
       run: |
-        echo ${{ vars.DATA }}
+        sudo npm install -g autocannon
+        echo autocannon -v
 
-    # - name: load test
-    #   run: |
-    #     autocannon -p 5 -a 50 -m POST -H "Content-Type: application/json" -b '${{ vars.DATA }}' ${{ vars.ENDPOINT }}
+    - name: load test
+      run: |
+        autocannon -p 5 -a 50 -m POST -H "Content-Type: application/json" -b '${{ vars.DATA }}' ${{ vars.ENDPOINT }}
