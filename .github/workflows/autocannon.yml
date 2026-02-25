@@ -1,33 +1,5 @@
-name: load testing
-
-on:
-  push:
-    branches: [ "main" ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Use Node.js and npm
-      uses: actions/setup-node@v6.2.0
-
-    - name: setup
-      run: |
-        sh load_test.sh
-
-    - name: load test
-      run: |
-        autocannon -p 2 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.ENDPOINT }}
-
-
-
-
-
-
 # name: load testing
+
 # on:
 #   push:
 #     branches: [ "main" ]
@@ -35,39 +7,67 @@ jobs:
 # jobs:
 #   build:
 #     runs-on: ubuntu-latest
+
 #     steps:
 #     - uses: actions/checkout@v4
+
 #     - name: Use Node.js and npm
 #       uses: actions/setup-node@v6.2.0
+
 #     - name: setup
 #       run: |
 #         sh load_test.sh
+
 #     - name: load test
 #       run: |
-#         autocannon -p 5 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.RATE_LIMITED_ENDPOINT }}
+#         autocannon -p 2 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.ENDPOINT }}
 
-  # machine-2:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v4
-  #   - name: Use Node.js and npm
-  #     uses: actions/setup-node@v6.2.0
-  #   - name: setup
-  #     run: |
-  #       sh load_test.sh
-  #   - name: load test
-  #     run: |
-  #       autocannon -p 5 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.RATE_LIMITED_ENDPOINT }}
 
-  # machine-3:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v4
-  #   - name: Use Node.js and npm
-  #     uses: actions/setup-node@v6.2.0
-  #   - name: setup
-  #     run: |
-  #       sh load_test.sh
-  #   - name: load test
-  #     run: |
-  #       autocannon -p 5 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.RATE_LIMITED_ENDPOINT }}
+
+
+
+
+name: load testing
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js and npm
+      uses: actions/setup-node@v6.2.0
+    - name: setup
+      run: |
+        sh load_test.sh
+    - name: load test
+      run: |
+        autocannon -p 2 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.RATE_LIMITED_ENDPOINT }}
+
+  machine-2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js and npm
+      uses: actions/setup-node@v6.2.0
+    - name: setup
+      run: |
+        sh load_test.sh
+    - name: load test
+      run: |
+        autocannon -p 2 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.RATE_LIMITED_ENDPOINT }}
+
+  machine-3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js and npm
+      uses: actions/setup-node@v6.2.0
+    - name: setup
+      run: |
+        sh load_test.sh
+    - name: load test
+      run: |
+        autocannon -p 2 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.RATE_LIMITED_ENDPOINT }}
