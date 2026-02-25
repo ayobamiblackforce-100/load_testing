@@ -1,0 +1,23 @@
+name: load testing
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # - name: Use Node.js and npm
+    #   uses: actions/setup-node@v6.2.0
+    #   # with:
+    #   #   node-version: ${{ matrix.node-version }}
+
+    - name: Build
+      run: |
+        apt install nodejs npm -y
+        npm -v
+        nodejs -v
