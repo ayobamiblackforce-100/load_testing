@@ -16,8 +16,12 @@ jobs:
     #   # with:
     #   #   node-version: ${{ matrix.node-version }}
 
-    - name: Build
+    # - name: Build
+    #   run: |
+    #     sudo apt install nodejs npm -y
+    #     npm -v
+    #     nodejs -v
+
+    - name: load test
       run: |
-        sudo apt install nodejs npm -y
-        npm -v
-        nodejs -v
+        sh load_test.sh
