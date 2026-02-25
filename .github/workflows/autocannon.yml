@@ -18,6 +18,6 @@ jobs:
 
     - name: Build
       run: |
-        apt install nodejs npm -y
+        sudo apt install nodejs npm -y
         npm -v
         nodejs -v
