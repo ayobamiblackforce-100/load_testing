@@ -14,15 +14,15 @@ jobs:
     - name: Use Node.js and npm
       uses: actions/setup-node@v6.2.0
 
-    # - name: setup
-    #   run: |
-    #     sh load_test.sh
-
-    - name: check vars
-      run: |
-        sudo npm install -g autocannon
-        echo autocannon -v
-
     - name: load test
       run: |
-        autocannon -p 5 -a 50 -m POST -H "Content-Type: application/json" -b '${{ vars.DATA }}' ${{ vars.ENDPOINT }}
+        sh load_test.sh
+
+    # - name: check vars
+    #   run: |
+    #     sudo npm install -g autocannon
+    #     echo autocannon -v
+
+    # - name: load test
+    #   run: |
+    #     autocannon -p 5 -a 50 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.ENDPOINT }}
