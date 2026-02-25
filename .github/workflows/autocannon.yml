@@ -1,5 +1,4 @@
 name: load testing
-
 on:
   push:
     branches: [ "main" ]
@@ -16,7 +15,7 @@ jobs:
         sh load_test.sh
     - name: load test
       run: |
-        autocannon -p 5 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.ENDPOINT }}
+        autocannon -p 5 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.RATE_LIMITED_ENDPOINT }}
 
   machine-2:
     runs-on: ubuntu-latest
@@ -29,7 +28,7 @@ jobs:
         sh load_test.sh
     - name: load test
       run: |
-        autocannon -p 5 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.ENDPOINT }}
+        autocannon -p 5 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.RATE_LIMITED_ENDPOINT }}
 
   machine-3:
     runs-on: ubuntu-latest
@@ -42,4 +41,4 @@ jobs:
         sh load_test.sh
     - name: load test
       run: |
-        autocannon -p 5 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.ENDPOINT }}
+        autocannon -p 5 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.RATE_LIMITED_ENDPOINT }}
