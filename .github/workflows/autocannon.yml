@@ -20,7 +20,7 @@ jobs:
 
     - name: load test
       run: |
-        autocannon -p 5 -a 50 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.ENDPOINT }}
+        autocannon -p 5 -a 20 -m POST -H "Content-Type: application/json" -b '${{ secrets.DATA }}' ${{ vars.ENDPOINT }}
 
 
 
